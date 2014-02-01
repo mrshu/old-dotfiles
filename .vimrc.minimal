@@ -1,0 +1,48 @@
+filetype plugin indent on
+
+set encoding=utf-8
+set fillchars+=stl:\ ,stlnc:\
+
+set nocompatible                " Use Vim defaults instead of 100% vi compatibility
+set backspace=indent,eol,start  " more powerful backspacing
+set autochdir
+set showcmd
+
+let mapleader=","
+
+set go=
+let g:Powerline_symbols = 'fancy'
+set t_Co=256
+
+syntax enable
+
+set expandtab
+set smarttab
+set autoindent
+
+command! -nargs=* Wrap set wrap linebreak nolist
+
+set title
+
+set wildmenu
+set wildmode=list:longest,full
+
+set history=500
+
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+set complete=.,w,b,u,U,t,i,d
+
+map <C-h> gT
+map <C-l> gt
+
+set hlsearch
+
+" storing backup and temporary files in one place
+set backup
+set backupdir=~/.vim/backup
+set directory=~/.vim/tmp
+
+set laststatus=2
+
+inoremap jj <Esc>
+
