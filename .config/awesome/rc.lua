@@ -135,7 +135,7 @@ mytextclock = awful.widget.textclock(" %d %b %H:%M:%S ", 1)
 mywibox = {}
 mywibox_bottom = {}
 mypromptbox = {}
-mylayoutbox = {}
+txtlayoutbox = {}
 mytaglist = {}
 mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
@@ -180,14 +180,25 @@ mytasklist.buttons = awful.util.table.join(
                                               if client.focus then client.focus:raise() end
                                           end))
 
+function updatelayoutbox(layout, s)
+    local screen = s or 1
+    local txt_l = beautiful["layout_txt_" .. awful.layout.getname(awful.layout.get(screen))] or ""
+    layout:set_text(txt_l)
+end
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
-    mylayoutbox[s] = awful.widget.layoutbox(s)
-    mylayoutbox[s]:buttons(awful.util.table.join(
+    txtlayoutbox[s] = wibox.widget.textbox(beautiful["layout_txt_" .. awful.layout.getname(awful.layout.get(s))])
+    awful.tag.attached_connect_signal(s, "property::selected", function ()
+        updatelayoutbox(txtlayoutbox[s], s)
+    end)
+    awful.tag.attached_connect_signal(s, "property::layout", function ()
+        updatelayoutbox(txtlayoutbox[s], s)
+    end)
+    txtlayoutbox[s]:buttons(awful.util.table.join(
                            awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
                            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
@@ -226,7 +237,7 @@ for s = 1, screen.count() do
     end
 
     right_layout:add(mytextclock)
-    right_layout:add(mylayoutbox[s])
+    right_layout:add(txtlayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
