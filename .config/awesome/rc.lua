@@ -121,6 +121,8 @@ bashets.register("battery.sh", { widget = battw, format = '<span color="gray">B:
 taskw = wibox.widget.textbox()
 bashets.register("tasks.sh", { widget = taskw, format = ' <span weight="bold" color="#666BD8">$1</span> $2', update_time = 20, separator=',%*'})
 
+volw = wibox.widget.textbox()
+bashets.register("volume.sh", { widget = volw, format = '<span color="gray">V:</span>$1 ', update_time = 5, separator=','})
 
 
 -- Menubar configuration
@@ -227,6 +229,7 @@ for s = 1, screen.count() do
     if s == 1 then
         right_layout:add(cpuw)
         right_layout:add(memw)
+        right_layout:add(volw)
         right_layout:add(battw)
 
 
