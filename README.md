@@ -9,4 +9,4 @@ A few useful dotfiles for:
 
 To install them simply clone this repository and run
 
-$ ./install.sh
+    $ ./install.sh
