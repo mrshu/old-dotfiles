@@ -6,3 +6,4 @@ mkdir -p ~/.vim/tmp
 cp ./vim.minimal ~/.vimrc
 rm ~/install.sh
 cp ./gitconfig ~/.gitconfig
+cp ./xbindkeysrc ~/.xbindkeysrc
