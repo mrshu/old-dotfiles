@@ -1,9 +1,13 @@
 #!/bin/bash
 
-cp ./tmux.conf ~/.tmux.conf
+echo "-> Installation of mrShu's dotfiles started"
+
+for x in $(find . -f ) do
+        echo "Installing $x into ~/"
+        cp ./$x ~/.$x
+done
+
 mkdir -p ~/.vim/backup
 mkdir -p ~/.vim/tmp
-cp ./vim.minimal ~/.vimrc
-rm ~/install.sh
-cp ./gitconfig ~/.gitconfig
-cp ./xbindkeysrc ~/.xbindkeysrc
+
+
