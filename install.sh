@@ -5,3 +5,4 @@ mkdir -p ~/.vim/backup
 mkdir -p ~/.vim/tmp
 cp ./vim.minimal ~/.vimrc
 rm ~/install.sh
+cp ./gitconfig ~/.gitconfig
