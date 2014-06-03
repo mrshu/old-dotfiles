@@ -10,4 +10,5 @@ done
 mkdir -p ~/.vim/backup
 mkdir -p ~/.vim/tmp
 
-
+rm ~/.install.sh
+rm ~/.README.md
