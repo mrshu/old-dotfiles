@@ -23,3 +23,5 @@ PERCENT=${PERCENT%%"%"}
 #PERCENT=${PERCENT%%","}
 echo -n "$STATUS,"
 pad $PERCENT 3
+echo -n ','
+echo -n `acpi|grep -o '..:..:..'`
