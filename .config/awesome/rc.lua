@@ -116,7 +116,7 @@ memw = wibox.widget.textbox()
 bashets.register("mem.sh", { widget = memw, format = '<span color="gray">M:</span>$1% ', update_time = 5, separator=','})
 
 battw = wibox.widget.textbox()
-bashets.register("battery.sh", { widget = battw, format = '<span color="gray">B:</span>$1$2% ', update_time = 20, separator=','})
+bashets.register("battery.sh", { widget = battw, format = '<span color="gray">B:</span>$1$2%$3 ', update_time = 20, separator=','})
 
 taskw = wibox.widget.textbox()
 bashets.register("tasks.sh", { widget = taskw, format = ' <span weight="bold" color="#666BD8">$1</span> $2', update_time = 20, separator=',%*'})
