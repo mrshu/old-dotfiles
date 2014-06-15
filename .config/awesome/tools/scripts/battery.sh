@@ -24,4 +24,9 @@ PERCENT=${PERCENT%%"%"}
 echo -n "$STATUS,"
 pad $PERCENT 3
 echo -n ','
-echo -n `acpi|grep -o '..:..:..'`
+TIME=$(acpi | grep -o '..:..:..')
+if [ -n "$TIME" ]; then
+        echo -n ' ('
+        echo -n $TIME
+        echo -n ')'
+fi
