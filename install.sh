@@ -2,7 +2,7 @@
 
 echo "-> Installation of mrShu's dotfiles started"
 
-for x in $(find . -f ) do
+for x in $(find . -path ./.git -prune -o -print) do
         echo "Installing $x into ~/"
         cp ./$x ~/.$x
 done
