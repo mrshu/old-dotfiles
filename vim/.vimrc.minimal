@@ -55,9 +55,6 @@ inoremap jj <Esc>
 " show matching brackets/parenthesis
 set showmatch
 
-" stop unnecessary rendering
-set lazyredraw
-
 " enable file type detection and do language-dependent indenting
 if has("autocmd")
   filetype on
