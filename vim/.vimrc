@@ -12,7 +12,7 @@ call vundle#rc()
 let g:Powerline_symbols = 'fancy'
 
 " vundle managing vundle
-Bundle 'gmarik/vundle'
+Bundle 'VundleVim/Vundle.vim'
 
 
 Bundle 'dockyard/vim-easydir'
@@ -27,7 +27,7 @@ Bundle 'tpope/vim-fugitive'
 
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'vim-scripts/UltiSnips'
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'spf13/vim-autoclose'
