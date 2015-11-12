@@ -11,9 +11,13 @@ call vundle#rc()
 " Powerline
 let g:Powerline_symbols = 'fancy'
 
+Bundle "Donearm/Ubaryd"
+
+set background=dark
+colorscheme ubaryd
+
 " vundle managing vundle
 Bundle 'VundleVim/Vundle.vim'
-
 
 Bundle 'dockyard/vim-easydir'
 Bundle 'junegunn/goyo.vim'
@@ -43,14 +47,61 @@ let g:airline#extensions#tabline#enabled = 1
 
 " neocomplete
 Bundle 'Shougo/neocomplete.vim'
+
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-let g:neocomplcache#enable_at_startup = 1
-let g:neocomplcache#enable_smart_case = 1
-let g:neocomplcache#min_syntax_length = 2
-let g:neocomplcache#enable_auto_select = 1
-let g:neocomplcache#max_list = 12
-let g:neocomplcache#enable_camel_case_completion = 1
-let g:neocomplcache#enable_underbar_completion = 1
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: cancel popup and insert newline.
+inoremap <silent> <CR> <C-r>=neocomplete#smart_close_popup()<CR><CR>
+" <TAB>: completion.
+inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<Tab>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplete#close_popup()
+inoremap <expr><C-e> neocomplete#cancel_popup()
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
 
 " syntastic
 Bundle 'scrooloose/syntastic'
