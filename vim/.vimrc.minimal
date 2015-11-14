@@ -52,8 +52,9 @@ set laststatus=2
 
 inoremap jj <Esc>
 
-" show matching brackets/parenthesis
+" show matching brackets/parenthesis and numbers
 set showmatch
+set number
 
 " enable file type detection and do language-dependent indenting
 if has("autocmd")

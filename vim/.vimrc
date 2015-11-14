@@ -37,6 +37,11 @@ Bundle 'spf13/vim-autoclose'
 Bundle 'ervandew/supertab'
 
 Bundle 'SirVer/ultisnips'
+" ultisnips conf
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
 Plugin 'honza/vim-snippets'
 
 
@@ -52,8 +57,6 @@ let g:airline#extensions#tabline#enabled = 1
 " neocomplete
 Bundle 'Shougo/neocomplete.vim'
 
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
@@ -81,15 +84,18 @@ inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
 
 " Recommended key-mappings.
-" <CR>: cancel popup and insert newline.
-inoremap <silent> <CR> <C-r>=neocomplete#smart_close_popup()<CR><CR>
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
 " <TAB>: completion.
-inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<Tab>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplete#close_popup()
-inoremap <expr><C-e> neocomplete#cancel_popup()
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -135,8 +141,6 @@ if has('gui_running')
   map <S-Insert> <MiddleMouse>
   map! <S-Insert> <MiddleMouse>
 endif
-" Ctrl-N + Ctrl-N to see line numbers
-nmap <C-N><C-N> :set invnumber<CR>:set nohls<CR>
 
 nmap <Leader><tab> :call g:AutoCloseJumpAfterPair()<CR>
 
