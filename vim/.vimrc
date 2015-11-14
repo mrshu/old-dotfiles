@@ -30,11 +30,15 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'vim-scripts/UltiSnips'
 Bundle 'mattn/emmet-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'spf13/vim-autoclose'
+Bundle 'ervandew/supertab'
+
+Bundle 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
 
 if has('python')
   Bundle "Valloric/MatchTagAlways"
