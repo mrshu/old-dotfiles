@@ -33,7 +33,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mattn/emmet-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'spf13/vim-autoclose'
+Bundle 'cohama/lexima.vim'
 Bundle 'ervandew/supertab'
 
 Bundle 'SirVer/ultisnips'
