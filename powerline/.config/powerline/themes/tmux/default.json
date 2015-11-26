@@ -13,7 +13,8 @@
         }
       },
       {
-        "function": "powerline.segments.common.time.date"
+        "function": "powerline.segments.common.time.date",
+        "priority": 65
       },
       {
         "function": "powerline.segments.common.time.date",
@@ -24,7 +25,8 @@
         }
       },
       {
-        "function": "powerline.segments.common.bat.battery"
+        "function": "powerline.segments.common.bat.battery",
+        "priority": 60
       }
     ]
   }
