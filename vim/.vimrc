@@ -2,6 +2,11 @@ if filereadable(expand("~/.vimrc.minimal"))
         source ~/.vimrc.minimal
 endif
 
+" Make sure we play nicely with fish
+if &shell =~# 'fish$'
+    set shell=/bin/bash
+endif
+
 filetype off
 call pathogen#infect()
 
