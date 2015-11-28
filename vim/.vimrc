@@ -34,6 +34,8 @@ Bundle 'tpope/vim-characterize'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 
+Bundle 'dag/vim-fish'
+
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mattn/emmet-vim'
 Bundle 'kien/ctrlp.vim'
