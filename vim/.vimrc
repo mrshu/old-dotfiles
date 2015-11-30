@@ -35,6 +35,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 
 Bundle 'dag/vim-fish'
+Bundle 'chriskempson/base16-vim'
 
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mattn/emmet-vim'
