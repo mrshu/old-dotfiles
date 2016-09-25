@@ -19,4 +19,7 @@ curl -fLo ~/.vimrc \
 curl -fLo ~/.bash_alias_fzf \
         https://raw.githubusercontent.com/mrshu/dotfiles/master/bash/.bash_alias_fzf
 
+curl -fLo ~/.bashrc \
+        https://raw.githubusercontent.com/mrshu/dotfiles/master/bash/.bashrc
+
 echo "source ~/.bash_alias_fzf" >> ~/.bashrc
