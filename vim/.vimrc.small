@@ -4,7 +4,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug "Donearm/Ubaryd"
+Plug 'Donearm/Ubaryd'
 
 set background=dark
 colorscheme ubaryd
