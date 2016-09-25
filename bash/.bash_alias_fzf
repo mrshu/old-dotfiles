@@ -1,9 +1,7 @@
 # fd - cd to selected directory
 fd() {
   local dir
-  dir=$(find -L ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
+  dir=$(find -L ${1:-.} -type d -print 2> /dev/null | fzf +m) && cd "$dir"
 }
 
 # fkill - kill process
