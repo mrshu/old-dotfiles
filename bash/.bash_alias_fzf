@@ -1,7 +1,8 @@
 # fd - cd to selected directory
 fd() {
   local dir
-  dir=$(find -L ${1:-.} -type d -print 2> /dev/null | fzf +m) && cd "$dir"
+  dir=$(find -L ${1:-.} -type d -maxdepth 5 -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
 }
 
 # fkill - kill process
