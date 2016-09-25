@@ -50,7 +50,9 @@ set noswapfile
 
 set laststatus=2
 
-inoremap jj <Esc>
+" Make ESC easier to reach
+inoremap jk <Esc>
+inoremap kj <Esc>
 
 " show matching brackets/parenthesis and numbers
 set showmatch
