@@ -65,3 +65,8 @@ if has("autocmd")
   filetype plugin on
 endif
 
+" An experiment with easier line movement by having relative numbers in
+" normal mode and absolute numbers in insert mode.
+set relativenumber
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber

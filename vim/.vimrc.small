@@ -1,0 +1,20 @@
+if filereadable(expand("~/.vimrc.minimal"))
+        source ~/.vimrc.minimal
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug "Donearm/Ubaryd"
+
+set background=dark
+colorscheme ubaryd
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+if filereadable(expand("~/.vimrc.local"))
+        source ~/.vimrc.local
+endif

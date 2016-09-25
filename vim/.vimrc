@@ -140,12 +140,6 @@ set t_ut=
 
 syntax enable
 
-" An experiment with easier line movement by having relative numbers in
-" normal mode and absolute numbers in insert mode.
-set relativenumber
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
-
 set pastetoggle=<F2>
 " Setting title -> simplier navigation through windows
 set title
