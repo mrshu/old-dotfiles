@@ -39,10 +39,10 @@ Bundle 'chriskempson/base16-vim'
 
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mattn/emmet-vim'
-Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'cohama/lexima.vim'
 Bundle 'ervandew/supertab'
+Bundle 'junegunn/fzf'
 
 Bundle 'SirVer/ultisnips'
 " ultisnips conf
@@ -132,6 +132,8 @@ let g:syntastic_python_checkers=['pep8']
 Bundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+
+Bundle 'fatih/vim-go'
 
 set t_Co=256
 set t_ut=
