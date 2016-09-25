@@ -6,14 +6,14 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Donearm/Ubaryd'
 
-set background=dark
-colorscheme ubaryd
-
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
+
+set background=dark
+colorscheme ubaryd
 
 if filereadable(expand("~/.vimrc.local"))
         source ~/.vimrc.local
