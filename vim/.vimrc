@@ -44,6 +44,8 @@ Bundle 'cohama/lexima.vim'
 Bundle 'ervandew/supertab'
 Bundle 'junegunn/fzf'
 
+Bundle 'mbbill/undotree'
+
 Bundle 'SirVer/ultisnips'
 " ultisnips conf
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -51,7 +53,6 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 Plugin 'honza/vim-snippets'
-
 
 if has('python')
   Bundle "Valloric/MatchTagAlways"

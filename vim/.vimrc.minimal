@@ -52,7 +52,9 @@ set laststatus=2
 
 " Make ESC easier to reach
 inoremap jk <Esc>
-inoremap kj <Esc>
+
+" This one is too intrusive, unfortunately
+" inoremap kj <Esc>
 
 " show matching brackets/parenthesis and numbers
 set showmatch

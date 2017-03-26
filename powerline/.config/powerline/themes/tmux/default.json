@@ -3,7 +3,8 @@
     "right": [
       {
         "function": "powerline.segments.common.sys.uptime",
-        "priority": 55
+        "priority": 55,
+        "before": ""
       },
       {
         "function": "powerline.segments.common.sys.system_load",
@@ -26,7 +27,11 @@
       },
       {
         "function": "powerline.segments.common.bat.battery",
-        "priority": 60
+        "priority": 60,
+        "args": {
+          "online": "\uf1e6",
+          "offline": " "
+        }
       }
     ]
   }
