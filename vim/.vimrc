@@ -46,6 +46,12 @@ Bundle 'junegunn/fzf'
 
 Bundle 'mbbill/undotree'
 
+" http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+Bundle 'godlygeek/tabular'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'junegunn/vim-easy-align'
+
 Bundle 'SirVer/ultisnips'
 " ultisnips conf
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -183,6 +189,9 @@ autocmd BufNewFile,BufRead *.rst set tabstop=4
 autocmd BufNewFile,BufRead *.rst set shiftwidth=4
 autocmd BufNewFile,BufRead *.rst set softtabstop=4
 autocmd BufNewFile,BufRead *.rst set textwidth=75
+autocmd BufNewFile,BufRead *.rst syntax spell toplevel
+"autocmd BufNewFile,BufRead *.rst syntax sync fromstart
+autocmd BufNewFile,BufRead *.rst setlocal spell
 
 
 "C config
@@ -272,27 +281,6 @@ nnoremap <Left> :echo 'use h!'<CR>
 nnoremap <Right> :echo 'use l!'<CR>
 nnoremap <Up> :echo 'use k!'<CR>
 nnoremap <Down> :echo 'use j!'<CR>
-
-function EndColumnStart()
-        set textwidth=78
-        set colorcolumn=78
-        augroup vimrc_autocmds
-          autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
-          autocmd BufEnter * match OverLength /\%78v.*/
-        augroup END
-endfunction
-
-function EndColumnEnd()
-        set textwidth=0
-        set colorcolumn=0
-        augroup vimrc_autocmds
-          autocmd BufEnter * highlight OverLength
-          autocmd BufEnter * match OverLength /\%78v.*/
-        augroup END
-endfunction
-
-map <C-N><C-T> :call EndColumnStart()<CR>
-map <C-N><C-R> :call EndColumnEnd()<CR>
 
 if filereadable(expand("~/.vimrc.local"))
         source ~/.vimrc.local
