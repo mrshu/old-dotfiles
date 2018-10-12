@@ -27,12 +27,14 @@ Bundle 'VundleVim/Vundle.vim'
 Bundle 'dockyard/vim-easydir'
 Bundle 'junegunn/goyo.vim'
 Bundle 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['latex']
 
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-characterize'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-obsession'
 
 Bundle 'dag/vim-fish'
 Bundle 'chriskempson/base16-vim'
@@ -46,10 +48,15 @@ Bundle 'junegunn/fzf'
 
 Bundle 'mbbill/undotree'
 
+Bundle 'gibiansky/vim-latex-objects'
+Bundle 'lervag/vimtex'
+Bundle 'vim-scripts/DrawIt'
+Bundle 'reedes/vim-wordy'
+
+
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Bundle 'godlygeek/tabular'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'davidhalter/jedi-vim'
 Bundle 'junegunn/vim-easy-align'
 
 Bundle 'SirVer/ultisnips'
@@ -63,6 +70,8 @@ Plugin 'honza/vim-snippets'
 if has('python')
   Bundle "Valloric/MatchTagAlways"
 endif
+
+Bundle 'zah/nim.vim'
 
 " vim-ariline
 Bundle 'bling/vim-airline'
@@ -131,9 +140,17 @@ let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\
 " Disable the preview window
 set completeopt-=preview
 
-" syntastic
-Bundle 'scrooloose/syntastic'
-let g:syntastic_python_checkers=['pep8']
+" lints
+if has('nvim') || v:version >= 800
+  " Calls linter and sytax check
+  Bundle 'w0rp/ale'
+  let g:airline#extensions#ale#enabled = 1
+  let g:ale_linters = {
+  \ 'python': ['pep8'] ,
+  \ }
+endif
+
+Bundle 'Shougo/echodoc.vim'
 
 " indent guides
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -141,6 +158,8 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 Bundle 'fatih/vim-go'
+Bundle 'Vimjas/vim-python-pep8-indent'
+"Bundle 'lifepillar/vim-mucomplete'
 
 set t_Co=256
 set t_ut=
