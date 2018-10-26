@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Donearm/Ubaryd'
 
+Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf.vim'
