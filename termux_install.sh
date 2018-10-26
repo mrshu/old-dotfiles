@@ -1,9 +1,9 @@
 #!/bin/bash
 
-apt update -y
-apt upgrade -y
+pkg update -y
+pkg upgrade -y
 
-apt install curl git fzf -y
+pkg install curl git fzf -y
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
             https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
