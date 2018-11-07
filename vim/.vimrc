@@ -7,172 +7,176 @@ if &shell =~# 'fish$'
     set shell=/bin/bash
 endif
 
-filetype off
-call pathogen#infect()
+" Map more mapleader
+let mapleader = "\\"
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
 
 " Powerline
 let g:Powerline_symbols = 'fancy'
 
-Bundle "Donearm/Ubaryd"
+" let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+" set termguicolors
+" set t_Co=256
+" set t_ut=
 
-set background=dark
-colorscheme ubaryd
+
+call plug#begin('~/.vim/bundle')
+
+Plug 'Donearm/Ubaryd'
+Plug 'vim-airline/vim-airline-themes'
+
+set t_Co=256
+set t_ut=
+
+" Plugin 'morhetz/gruvbox'
+" colorscheme gruvbox
+" set background=dark
+" let g:gruvbox_contrast_dark = 1
 
 " vundle managing vundle
-Bundle 'VundleVim/Vundle.vim'
+Plug 'VundleVim/Vundle.vim'
 
-Bundle 'dockyard/vim-easydir'
-Bundle 'junegunn/goyo.vim'
-Bundle 'sheerun/vim-polyglot'
+Plug 'dockyard/vim-easydir'
+Plug 'junegunn/goyo.vim'
+Plug 'sheerun/vim-polyglot'
 let g:polyglot_disabled = ['latex']
 
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-characterize'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-obsession'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
 
-Bundle 'dag/vim-fish'
-Bundle 'chriskempson/base16-vim'
+Plug 'dag/vim-fish'
 
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'mattn/emmet-vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'cohama/lexima.vim'
-Bundle 'ervandew/supertab'
-Bundle 'junegunn/fzf'
+Plug 'Yggdroot/indentLine'
 
-Bundle 'mbbill/undotree'
+Plug 'mattn/emmet-vim'
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 
-Bundle 'gibiansky/vim-latex-objects'
-Bundle 'lervag/vimtex'
-Bundle 'vim-scripts/DrawIt'
-Bundle 'reedes/vim-wordy'
+Plug 'scrooloose/nerdtree'
+let NERDTreeHijackNetrw = 0
+noremap <silent> <leader>n :NERDTreeToggle<CR> <C-w>=
+noremap <silent> <leader>f :NERDTreeFind<CR> <C-w>=
 
+Plug 'cohama/lexima.vim'
+
+Plug 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+" Display funciton signatures from completions in the command line
+Plug 'Shougo/echodoc.vim'
+let g:echodoc_enable_at_startup = 1
+let g:echodoc#enable_at_startup = 1
+set noshowmode
+
+"Deoplete: dark powered autocomplete (in an async way)
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'zchee/deoplete-jedi'
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#auto_complete_start_length = 2
+let g:deoplete#sources={}
+
+" Only enable `deoplete` once we get into INSERT mode
+autocmd InsertEnter * call deoplete#enable()
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+Plug 'mbbill/undotree'
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
+nnoremap <F3> :UndotreeToggle<CR>
+
+Plug 'ctrlpvim/ctrlp.vim'
+
+let g:ctrlp_map = '<leader><c-p>'
+if exists("g:ctrlp_user_command")
+    unlet g:ctrlp_user_command
+endif
+" use fd if available
+if executable('fd')
+    let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
+    let g:ctrlp_use_caching = 0
+endif
+
+Plug 'gibiansky/vim-latex-objects'
+Plug 'lervag/vimtex'
+Plug 'vim-scripts/DrawIt'
+Plug 'reedes/vim-wordy'
 
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
-Bundle 'godlygeek/tabular'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'junegunn/vim-easy-align'
+Plug 'godlygeek/tabular'
 
-Bundle 'SirVer/ultisnips'
+" Align visual selection around character
+Plug 'tommcdo/vim-lion'
+
+Plug 'SirVer/ultisnips'
 " ultisnips conf
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-Plugin 'honza/vim-snippets'
-
-if has('python')
-  Bundle "Valloric/MatchTagAlways"
-endif
-
-Bundle 'zah/nim.vim'
+Plug 'honza/vim-snippets'
+" Looks nice but slows down Vim startup noticeably
+"Plug 'Valloric/MatchTagAlways'
+Plug 'zah/nim.vim'
 
 " vim-ariline
-Bundle 'bling/vim-airline'
+Plug 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
-" neocomplete
-Bundle 'Shougo/neocomplete.vim'
-
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplete#enable_auto_close_preview = 0
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 " Disable the preview window
 set completeopt-=preview
 
 " lints
 if has('nvim') || v:version >= 800
+  " Make it so that linter is only called when INSERT mode is left
+  let g:ale_lint_on_text_changed = 0
+  let g:ale_lint_on_enter = 0
+  let g:ale_lint_on_insert_leave = 1
+
   " Calls linter and sytax check
-  Bundle 'w0rp/ale'
+  Plug 'w0rp/ale'
   let g:airline#extensions#ale#enabled = 1
   let g:ale_linters = {
-  \ 'python': ['pep8'] ,
+  \ 'python': ['flake8'] ,
   \ }
 endif
 
-Bundle 'Shougo/echodoc.vim'
 
 " indent guides
-Bundle 'nathanaelkane/vim-indent-guides'
+Plug 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
-Bundle 'fatih/vim-go'
-Bundle 'Vimjas/vim-python-pep8-indent'
-"Bundle 'lifepillar/vim-mucomplete'
+Plug 'fatih/vim-go'
+Plug 'Vimjas/vim-python-pep8-indent'
+"Plug 'lifepillar/vim-mucomplete'
 
-set t_Co=256
-set t_ut=
+call plug#end()
 
 syntax enable
+colorscheme ubaryd
+let g:airline_theme='ubaryd'
+let python_highlight_all = 1
 
 set pastetoggle=<F2>
 " Setting title -> simplier navigation through windows
 set title
 set ruler
 
-nnoremap <F3> :GundoToggle<CR>
-nnoremap <F4> :NERDTreeToggle<CR>
 
 if has('gui_running')
   " Make shift-insert work like in Xterm
@@ -181,6 +185,13 @@ if has('gui_running')
 endif
 
 nmap <Leader><tab> :call g:AutoCloseJumpAfterPair()<CR>
+
+" Autoread
+set autoread
+augroup autoRead
+    autocmd!
+    autocmd CursorHold * silent! checktime
+augroup END
 
 " Latex config
 autocmd BufNewFile,BufRead *.tex set makeprg=pdflatex\ \-file\-line\-error\ \-interaction=nonstopmode
@@ -191,7 +202,6 @@ autocmd BufNewFile,BufRead *.tex set softtabstop=4
 autocmd BufNewFile,BufRead *.tex set textwidth=79
 
 " Perl
-autocmd BufNewFile,BufRead *.pl,*.pm nmap <F6> :!perl %<CR>
 autocmd BufNewFile,BufRead *.pl,*.pm set tabstop=4
 autocmd BufNewFile,BufRead *.pl,*.pm set shiftwidth=4
 autocmd BufNewFile,BufRead *.pl,*.pm set softtabstop=4
@@ -202,6 +212,7 @@ autocmd BufNewFile,BufRead *.rb set tabstop=2
 autocmd BufNewFile,BufRead *.rb set shiftwidth=2
 autocmd BufNewFile,BufRead *.rb set softtabstop=2
 autocmd BufNewFile,BufRead *.rb set textwidth=79
+autocmd FileType ruby,eruby set noballooneval
 
 " rst
 autocmd BufNewFile,BufRead *.rst set tabstop=4
@@ -276,25 +287,6 @@ autocmd BufNewFile,BufRead *.tt,*.html,*.htm set tabstop=2
 autocmd BufNewFile,BufRead *.tt,*.html,*.htm set shiftwidth=2
 autocmd BufNewFile,BufRead *.tt,*.html,*.htm set softtabstop=2
 autocmd BufNewFile,BufRead *.tt,*.html,*.htm set filetype=htmldjango
-
-
-" Lua
-autocmd BufNewFile,BufRead *.lua map <F6> :w<CR>:!lua %<CR>
-
-" Mail
-" Some tricks for mutt
-" F1 through F3 re-wraps paragraphs in useful ways
-augroup MUTT
-  au BufRead ~/.mutt/tmp/mutt* set spell " <-- vim 7 required
-  au BufRead ~/.mutt/tmp/mutt* nmap  <F1>  gqap
-  au BufRead ~/.mutt/tmp/mutt* nmap  <F2>  gqqj
-  au BufRead ~/.mutt/tmp/mutt* nmap  <F3>  kgqj
-  au BufRead ~/.mutt/tmp/mutt* map!  <F1>  <ESC>gqapi
-  au BufRead ~/.mutt/tmp/mutt* map!  <F2>  <ESC>gqqji
-  au BufRead ~/.mutt/tmp/mutt* map!  <F3>  <ESC>kgqji
-augroup END
-
-autocmd FileType c,cpp,java,php,pl,py,html,htmldjango,markdown autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 nnoremap <Left> :echo 'use h!'<CR>
 nnoremap <Right> :echo 'use l!'<CR>
