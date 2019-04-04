@@ -52,6 +52,9 @@ Plug 'tpope/vim-obsession'
 Plug 'dag/vim-fish'
 
 Plug 'Yggdroot/indentLine'
+" Do not conceal Markdown links if not necessary
+" https://vi.stackexchange.com/questions/7258/how-do-i-prevent-vim-from-hiding-symbols-in-markdown-and-json#comment23465_7263
+let g:indentLine_setConceal = 0
 
 Plug 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
@@ -121,13 +124,13 @@ Plug 'godlygeek/tabular'
 " Align visual selection around character
 Plug 'tommcdo/vim-lion'
 
-Plug 'SirVer/ultisnips'
-" ultisnips conf
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"" ultisnips conf
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"
+"Plug 'honza/vim-snippets'
 " Looks nice but slows down Vim startup noticeably
 "Plug 'Valloric/MatchTagAlways'
 Plug 'zah/nim.vim'
@@ -164,6 +167,8 @@ let g:indent_guides_guide_size = 1
 Plug 'fatih/vim-go'
 Plug 'Vimjas/vim-python-pep8-indent'
 "Plug 'lifepillar/vim-mucomplete'
+
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
@@ -222,6 +227,8 @@ autocmd BufNewFile,BufRead *.rst set textwidth=75
 autocmd BufNewFile,BufRead *.rst syntax spell toplevel
 "autocmd BufNewFile,BufRead *.rst syntax sync fromstart
 autocmd BufNewFile,BufRead *.rst setlocal spell
+autocmd BufNewFile,BufRead *.rst let b:surround_{char2nr('b')} = "**\r**"
+autocmd BufNewFile,BufRead *.rst let b:surround_{char2nr('v')} = "``\r``"
 
 
 "C config
