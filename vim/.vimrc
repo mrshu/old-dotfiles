@@ -21,18 +21,13 @@ let g:Powerline_symbols = 'fancy'
 " set t_ut=
 
 
+
 call plug#begin('~/.vim/bundle')
 
-Plug 'Donearm/Ubaryd'
 Plug 'vim-airline/vim-airline-themes'
 
 set t_Co=256
 set t_ut=
-
-" Plugin 'morhetz/gruvbox'
-" colorscheme gruvbox
-" set background=dark
-" let g:gruvbox_contrast_dark = 1
 
 " vundle managing vundle
 Plug 'VundleVim/Vundle.vim'
@@ -48,8 +43,12 @@ Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-eunuch'
 
 Plug 'dag/vim-fish'
+
+
+Plug 'qpkorr/vim-renamer'
 
 Plug 'Yggdroot/indentLine'
 " Do not conceal Markdown links if not necessary
@@ -67,10 +66,6 @@ noremap <silent> <leader>f :NERDTreeFind<CR> <C-w>=
 
 Plug 'cohama/lexima.vim'
 
-Plug 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
-
 " Display funciton signatures from completions in the command line
 Plug 'Shougo/echodoc.vim'
 let g:echodoc_enable_at_startup = 1
@@ -86,13 +81,6 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'zchee/deoplete-jedi'
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_complete_start_length = 2
-let g:deoplete#sources={}
-
-" Only enable `deoplete` once we get into INSERT mode
-autocmd InsertEnter * call deoplete#enable()
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 Plug 'mbbill/undotree'
 if has("persistent_undo")
@@ -101,22 +89,10 @@ if has("persistent_undo")
 endif
 nnoremap <F3> :UndotreeToggle<CR>
 
-Plug 'ctrlpvim/ctrlp.vim'
-
-let g:ctrlp_map = '<leader><c-p>'
-if exists("g:ctrlp_user_command")
-    unlet g:ctrlp_user_command
-endif
-" use fd if available
-if executable('fd')
-    let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
-    let g:ctrlp_use_caching = 0
-endif
-
 Plug 'gibiansky/vim-latex-objects'
 Plug 'lervag/vimtex'
 Plug 'vim-scripts/DrawIt'
-Plug 'reedes/vim-wordy'
+"Plug 'reedes/vim-wordy'
 
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plug 'godlygeek/tabular'
@@ -170,7 +146,33 @@ Plug 'Vimjas/vim-python-pep8-indent'
 
 Plug 'editorconfig/editorconfig-vim'
 
+Plug 'vimwiki/vimwiki'
+let g:vimwiki_list = [{'path': '~/Nextcloud/wiki/', 'syntax': 'markdown', 'auto_toc': 1, 'auto_tags': 1}]
+au FileType vimwiki setlocal shiftwidth=2 tabstop=2 expandtab
+Plug 'mattn/calendar-vim'
+
+
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'michal-h21/vim-zettel'
+
+let g:zettel_format = "zettel-%file_alpha-%y%m%d-%H%M"
+
+Plug 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+Plug 'Donearm/Ubaryd'
+
 call plug#end()
+
+call deoplete#custom#option("min_pattern_length", 2)
+call deoplete#custom#option("smart_case", 1)
+
+" Only enable `deoplete` once we get into INSERT mode
+autocmd InsertEnter * call deoplete#enable()
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
 
 syntax enable
 colorscheme ubaryd
@@ -191,7 +193,7 @@ endif
 
 nmap <Leader><tab> :call g:AutoCloseJumpAfterPair()<CR>
 
-" Autoread
+" Autoread (i.e. automatically re-read a file that has changed)
 set autoread
 augroup autoRead
     autocmd!
@@ -279,9 +281,9 @@ autocmd BufNewFile,BufRead *.java set shiftwidth=4
 autocmd BufNewFile,BufRead *.java set softtabstop=4
 autocmd BufNewFile,BufRead *.java set textwidth=79
 
-"Markdown
+"Markdown (and VimWiki)
 autocmd BufNewFile,BufRead *.bmd,*.md set filetype=markdown
-autocmd BufNewFile,BufRead *.bmd,*.md set textwidth=79
+autocmd BufNewFile,BufRead *.bmd,*.md,*.wiki set textwidth=79
 
 " PDE
 autocmd BufNewFile,BufRead *.pde set filetype=c

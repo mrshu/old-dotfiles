@@ -38,9 +38,22 @@ map <C-l> gt
 
 set hlsearch
 
-" storing backup and temporary files in one place
+" https://gist.github.com/nepsilon/003dd7cfefc20ce1e894db9c94749755
+" Turn on backup option
 set backup
-set backupdir=~/.vim/backup
+
+"Where to store backups
+set backupdir=~/.vim/backup//
+
+"Make backup before overwriting the current buffer
+set writebackup
+
+"Overwrite the original backup file
+set backupcopy=yes
+
+"Meaningful backup name, ex: filename@2015-04-05.14:59
+au BufWritePre * let &bex = '@' . strftime("%F.%H:%M")
+
 set directory=~/.vim/tmp
 
 " maintain undo history
